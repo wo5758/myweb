@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <form>
+                <h2>회원가입</h2>
+                <div class="row">
+                    <div class="input-group">
+                        <label for="id">아이디</label>
+                        <input type="text" id="id" name="id">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">비밀번호</label>
+                        <input type="password" id="password" name="password">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name">
+                    </div>
+                    <div class="input-group">
+                        <label for="nickname">별명</label>
+                        <input type="text" id="nickname" name="nickname">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" placeholder="email@site.com">
+                </div>
+                <div class="input-group">
+                    <label for="address">주소</label>
+                    <input type="text" id="address" name="address" placeholder="서울특별시 동작구">
+                </div>
+                <div class="row">
+                    <div class="input-group">
+                        <label for="route">가입 경로</label>
+                        <select id="route" name="route">
+                            <option value="">선택</option>
+                            <option value="search">검색</option>
+                            <option value="sns">SNS</option>
+                            <option value="friend">지인 추천</option>
+                            <option value="etc">기타</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="years">나이 : <span id="years_txt">25</span>세</label>
+                        <input type="range" id="years" name="years" min="1" max="100" value="25" oninput="document.getElementById('years_txt').innerHTML=this.value;">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>성별</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="male">남자</label>
+                        <label><input type="radio" name="gender" value="female">여자</label>
+                        <label><input type="radio" name="gender" value="none">선택 안함</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>관심사</label>
+                    <div class="checkbox-group multi">
+                        <label><input type="checkbox" name="interest" value="sports">스포츠</label>
+                        <label><input type="checkbox" name="interest" value="music">음악</label>
+                        <label><input type="checkbox" name="interest" value="travel">여행</label>
+                        <label><input type="checkbox" name="interest" value="reading">독서</label>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">가입하기</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
