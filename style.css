@@ -5,6 +5,57 @@ body, html {
     background: transparent;
 }
 
+.top-nav {
+    width: 100%;
+    background: linear-gradient(90deg, #6a93cb 0%, #3182f6 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 36px;
+    height: 60px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.nav-logo {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.05em;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 5px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: rgba(255,255,255,0.18);
+    color: #f1f5f9;
+}
+
 .background {
     width: 100%;
     height: 100%;
@@ -48,6 +99,37 @@ h2 {
 
 .top-right-btn:hover {
     background: #2563eb;
+}
+
+.home-card {
+    display: block;
+    background: #f1f5f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(49,130,246,0.08);
+    padding: 22px 28px;
+    min-width: 180px;
+    text-align: center;
+    color: #222;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.home-card-active {
+    background: #e3ecfa;
+    box-shadow: 0 4px 18px rgba(49,130,246,0.13);
+    transform: scale(1.06);
+}
+
+.card-title {
+    font-size: 1.15em;
+    font-weight: 700;
+    margin-bottom: 7px;
+    color: #3182f6;
+}
+
+.card-desc {
+    font-size: 0.98em;
+    color: #444;
 }
 
 .profile-section {
@@ -157,9 +239,15 @@ ul li, ol li {
     outline: none;
 }
 
-.input-group input:focus,
 .input-group select:focus {
     border: 1.5px solid #3182f6;
+}
+
+.input-active {
+    border: 1.5px solid #3182f6 !important;
+    background: #eaf3ff;
+    box-shadow: 0 0 0 2px rgba(49,130,246,0.10);
+    transition: all 0.2s;
 }
 
 .checkbox-group {
@@ -212,4 +300,46 @@ ul li, ol li {
 
 .submit-btn:hover {
     background: #2563eb;
+}
+
+.event-list-guide {
+    float: right;
+    font-size: 0.5em;
+    color: #888;
+    font-weight: 400;
+    margin-left: 16px;
+    white-space: nowrap;
+}
+
+.event-list-wrapper {
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+.event-list {
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.event-item {
+    margin-bottom: 28px;
+}
+
+.event-item:last-child {
+    margin-bottom: 0;
+}
+
+.event-title {
+    font-size: 1.18em;
+    font-weight: 600;
+    color: #3182f6;
+    margin-bottom: 8px;
+}
+
+.event-desc {
+    color: #444;
+    font-size: 1em;
+    margin-left: 6px;
 }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 목록</title>
+    <link rel="stylesheet" href="./style.css">
+    <script>
+        window.onload = function() {
+            let eventList = document.getElementById('event-list');
+            let items = eventList.querySelectorAll('.event-item');
+
+            let itemStyle = window.getComputedStyle(items[0]);
+            let itemHeight = items[0].offsetHeight;
+            let marginBottom = parseInt(itemStyle.marginBottom) || 0;
+            let totalItemHeight = itemHeight + marginBottom;
+
+            let maxHeight = totalItemHeight * 2 - marginBottom;
+            eventList.style.maxHeight = maxHeight + 'px';
+        };
+
+        let isScrolling = false;
+        function eventListWheel(e) {
+            e.preventDefault();
+            if (isScrolling) return;
+
+            let eventList = e.currentTarget;
+            let item = eventList.querySelector('.event-item');
+            let itemHeight = item.offsetHeight + 28;
+            let scrollStep = itemHeight * 2;
+            
+            let targetTop = eventList.scrollTop + (e.deltaY > 0 ? scrollStep : -scrollStep);
+
+            eventList.scrollTo({ top: targetTop, behavior: "smooth" });
+
+            isScrolling = true;
+            setTimeout(() => { isScrolling = false; }, 400);
+        }
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-logo">1JAE</div>
+        <ul class="nav-links">
+            <li><a href="index.html">메인</a></li>
+            <li><a href="about.html">자기소개</a></li>
+            <li><a href="join.html">회원가입</a></li>
+            <li><a href="event.html" class="active">JS 이벤트 목록</a></li>
+        </ul>
+    </nav>
+    <div class="background">
+        <div class="container">
+            <h2>JS 이벤트 목록 <span class="event-list-guide">스크롤해주세요</span></h2>
+            <div class="event-list-wrapper">
+                <ul id="event-list" class="event-list" onwheel="eventListWheel(event)">
+                    <li class="event-item">
+                        <div class="event-title">onmouseover / onmouseout</div>
+                        <div class="event-desc">메인 페이지 - 카드에 마우스를 올리거나 마우스가 벗어날 때 강조 효과 적용 및 원상복귀에 사용</div>
+                    </li>
+                    <li class="event-item">
+                        <div class="event-title">onload</div>
+                        <div class="event-desc">회원가입 페이지 - 생년월일(년/월/일) select 박스를 자동으로 생성하는 데 사용</div>
+                    </li>
+                    <li class="event-item">
+                        <div class="event-title">onchange</div>
+                        <div class="event-desc">회원가입 페이지 - 생년월일 select 값이 바뀔 때마다 현재 나이를 자동으로 계산해 표시하는 데 사용</div>
+                    </li>
+                    <li class="event-item">
+                        <div class="event-title">onclick</div>
+                        <div class="event-desc">회원가입 페이지 - 가입하기 버튼 클릭 시 입력값을 모아 alert로 보여주고, 폼의 기본 제출 동작을 막는 데 사용</div>
+                    </li>
+                    <li class="event-item">
+                        <div class="event-title">onfocus / onblur</div>
+                        <div class="event-desc">회원가입 페이지 - input에 포커스가 들어오거나(선택 시) 포커스가 나갈 때 입력창 강조 효과 적용 및 원상복귀에 사용</div>
+                    </li>
+                    <li class="event-item">
+                        <div class="event-title">onwheel</div>
+                        <div class="event-desc">JS 이벤트 목록 페이지 - 목록 스크롤 시 부드럽게 2칸씩 스크롤되는 효과 적용</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

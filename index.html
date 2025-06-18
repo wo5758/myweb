@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자기소개 페이지</title>
+    <link rel="stylesheet" href="./style.css">
+    <script>
+        function cardHover(el) {
+            el.classList.add('home-card-active');
+        }
+        function cardOut(el) {
+            el.classList.remove('home-card-active');
+        }
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-logo">1JAE</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">메인</a></li>
+            <li><a href="about.html">자기소개</a></li>
+            <li><a href="join.html">회원가입</a></li>
+            <li><a href="event.html">JS 이벤트 목록</a></li>
+        </ul>
+    </nav>
+    <div class="background">
+        <div class="container">
+            <h2>환영합니다!</h2>
+            <p>
+                1JAE 포트폴리오 사이트에 오신 것을 환영합니다.<br>
+                상단 메뉴를 통해 자기소개, 회원가입, JS 이벤트 목록 등 다양한 정보를 확인하세요.
+            </p>
+            <div style="display:flex; gap:24px; flex-wrap:wrap; justify-content:center; margin-top:24px;">
+                <a href="about.html" class="home-card" onmouseover="cardHover(this)" onmouseout="cardOut(this)">
+                    <div class="card-title">자기소개</div>
+                    <div class="card-desc">운영자 정보와 경력, 취미, 시간표 등 소개</div>
+                </a>
+                <a href="join.html" class="home-card" onmouseover="cardHover(this)" onmouseout="cardOut(this)">
+                    <div class="card-title">회원가입</div>
+                    <div class="card-desc">간단한 정보 입력으로 회원가입 체험</div>
+                </a>
+                <a href="event.html" class="home-card" onmouseover="cardHover(this)" onmouseout="cardOut(this)">
+                    <div class="card-title">JS 이벤트 목록</div>
+                    <div class="card-desc">사이트에서 사용된 JS 이벤트 설명</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

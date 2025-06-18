@@ -4,41 +4,125 @@
     <meta charset="UTF-8">
     <title>회원가입</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        // 년, 월, 일 select 옵션 자동 생성
+        window.onload = function() {
+            let yearSel = document.getElementById('birth-year');
+            let monthSel = document.getElementById('birth-month');
+            let daySel = document.getElementById('birth-day');
+            let thisYear = new Date().getFullYear();
+
+            // 년도: 1900 ~ 올해
+            for (let y = thisYear; y >= 1950; y--) {
+                let opt = document.createElement('option');
+                opt.value = y;
+                opt.text = y + '년';
+                yearSel.add(opt);
+            }
+            // 월
+            for (let m = 1; m <= 12; m++) {
+                let opt = document.createElement('option');
+                opt.value = m;
+                opt.text = m + '월';
+                monthSel.add(opt);
+            }
+            // 일
+            for (let d = 1; d <= 31; d++) {
+                let opt = document.createElement('option');
+                opt.value = d;
+                opt.text = d + '일';
+                daySel.add(opt);
+            }
+        };
+
+        function inputFocus(el) {
+            el.classList.add('input-active');
+        }
+        function inputBlur(el) {
+            el.classList.remove('input-active');
+        }
+
+        function updateAge() {
+            let year = parseInt(document.getElementById('birth-year').value, 10);
+            let ageSpan = document.getElementById('age-span');
+            let today = new Date();
+            let thisYear = today.getFullYear();
+            if (!year) {
+                ageSpan.textContent = '1';
+                return;
+            }
+            ageSpan.textContent = thisYear - year + 1;
+        }
+
+        function print(e) {
+            e.preventDefault();
+            let text = "";
+            Array.from(document.querySelectorAll("input, select")).forEach(v => {
+                switch(v.type) {
+                    case "text":
+                    case "password":
+                    case "email":
+                        text += v.dataset.kor + " : " + v.value;
+                        break;
+                    case "select":
+                    case "select-one":
+                        if(v.dataset.kor == "년") text += "생년월일 : "
+                        text += v.value + v.dataset.kor + " ";
+                        return;
+                        break;
+                    default:
+                        return;
+                        break;
+                }
+                text += "\n";
+            })
+            alert(text);
+        }
+    </script>
 </head>
 <body>
+    <nav class="top-nav">
+        <div class="nav-logo">1JAE</div>
+        <ul class="nav-links">
+            <li><a href="index.html">메인</a></li>
+            <li><a href="about.html">자기소개</a></li>
+            <li><a href="join.html" class="active">회원가입</a></li>
+            <li><a href="event.html">JS 이벤트 목록</a></li>
+        </ul>
+    </nav>
     <div class="background">
         <div class="container">
-            <form>
+            <form name="join-form">
                 <h2>회원가입</h2>
                 <div class="row">
                     <div class="input-group">
                         <label for="id">아이디</label>
-                        <input type="text" id="id" name="id">
+                        <input type="text" id="id" name="id" data-kor="아이디" onfocus="inputFocus(this)" onblur="inputBlur(this)">
                     </div>
                     <div class="input-group">
                         <label for="password">비밀번호</label>
-                        <input type="password" id="password" name="password">
+                        <input type="password" id="password" name="password" data-kor="비밀번호" onfocus="inputFocus(this)" onblur="inputBlur(this)">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-group">
                         <label for="name">이름</label>
-                        <input type="text" id="name" name="name">
+                        <input type="text" id="name" name="name" data-kor="이름" onfocus="inputFocus(this)" onblur="inputBlur(this)">
                     </div>
                     <div class="input-group">
                         <label for="nickname">별명</label>
-                        <input type="text" id="nickname" name="nickname">
+                        <input type="text" id="nickname" name="nickname" data-kor="별명" onfocus="inputFocus(this)" onblur="inputBlur(this)">
                     </div>
                 </div>
                 <div class="input-group">
                     <label for="email">이메일</label>
-                    <input type="email" id="email" name="email" placeholder="email@site.com">
+                    <input type="email" id="email" name="email" placeholder="email@site.com" data-kor="이메일" onfocus="inputFocus(this)" onblur="inputBlur(this)">
                 </div>
                 <div class="input-group">
                     <label for="address">주소</label>
-                    <input type="text" id="address" name="address" placeholder="서울특별시 동작구">
+                    <input type="text" id="address" name="address" placeholder="서울특별시 동작구" data-kor="주소" onfocus="inputFocus(this)" onblur="inputBlur(this)">
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="input-group">
                         <label for="route">가입 경로</label>
                         <select id="route" name="route">
@@ -52,6 +136,22 @@
                     <div class="input-group">
                         <label for="years">나이 : <span id="years_txt">25</span>세</label>
                         <input type="range" id="years" name="years" min="1" max="100" value="25" oninput="document.getElementById('years_txt').innerHTML=this.value;">
+                    </div>
+                </div> -->
+                <div class="row" style="align-items: flex-end;">
+                    <div class="input-group" style="flex:2;">
+                        <label>생년월일</label>
+                        <div style="display:flex; gap:8px;">
+                            <select id="birth-year" name="birth-year" onchange="updateAge()" style="flex:1;" data-kor="년"></select>
+                            <select id="birth-month" name="birth-month" onchange="updateAge()" style="flex:1;" data-kor="월"></select>
+                            <select id="birth-day" name="birth-day" onchange="updateAge()" style="flex:1;" data-kor="일"></select>
+                        </div>
+                    </div>
+                    <div class="input-group" style="flex:1;">
+                        <label>현재 나이</label>
+                        <div style="font-size:1.1em; font-weight:600; margin-top:10px;">
+                            <span id="age-span">1</span>세
+                        </div>
                     </div>
                 </div>
                 <div class="input-group">
@@ -71,7 +171,7 @@
                         <label><input type="checkbox" name="interest" value="reading">독서</label>
                     </div>
                 </div>
-                <button type="submit" class="submit-btn">가입하기</button>
+                <button class="submit-btn" onclick="print(event)">가입하기</button>
             </form>
         </div>
     </div>
